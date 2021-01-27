@@ -2,7 +2,7 @@ package exercicio01;
 
 import java.util.Scanner;
 
-public class questao03 {
+public class Questao03 {
 	public static void main(String args[]) {
 		int hora, minuto, segundo;
 		Scanner ler = new Scanner(System.in);

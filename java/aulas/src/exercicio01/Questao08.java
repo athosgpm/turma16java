@@ -2,7 +2,7 @@ package exercicio01;
 
 import java.util.Scanner;
 
-public class questao08 {
+public class Questao08 {
 	public static void main(String args[]) {
 		Scanner ler = new Scanner(System.in);
 		double custoFabrica;

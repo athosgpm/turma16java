@@ -2,7 +2,7 @@ package exercicio01;
 
 import java.util.Scanner;
 
-public class questao05 {
+public class Questao05 {
 	public static void main(String args[]) {
 		Scanner ler = new Scanner(System.in);
 		double nota1,nota2,nota3;

@@ -2,7 +2,7 @@ package exercicio01;
 
 import java.util.Scanner;
 
-public class questao02 {
+public class Questao02 {
 	public static void main(String args[]) {
 		int ano,mes,dia;
 		Scanner ler = new Scanner(System.in);
