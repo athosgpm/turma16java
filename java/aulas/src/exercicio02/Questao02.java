@@ -26,7 +26,7 @@ public class Questao02 {
 			}else {
 				System.out.printf("%d -> %d -> %d",a,c,b);
 			}
-		}else if(c>=a && c>=c){
+		}else if(c>=a && c>=b){
 			if(a>=b) {
 				System.out.printf("%d -> %d -> %d",b,a,c);
 			}else {

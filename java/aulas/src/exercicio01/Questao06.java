@@ -20,7 +20,6 @@ public class Questao06 {
 		//x1 = Math.pow(Math.pow(x2-x1, 2)+Math.pow(y2-y1, 2), 1d/2); 			//por que não funcionou? 
 		x1 = Math.round(Math.pow(Math.pow((x2-x1), 2)+Math.pow((y2-y1), 2), 1d/2)); // vi que precisa arredondar o valor ou usar o metodo de Newton–Raphson.
 
-		
 		System.out.printf("Adistancia entre os dois pontos é de: %.2f", x1);
 	}
 }
