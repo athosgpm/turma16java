@@ -10,12 +10,17 @@ public class Q06SomaDiv3 {
 		do {
 			System.out.println("Digite o valor do numero: ");
 			a=ler.nextInt();
-			if(a%3==0) {
+			if(a%3==0&&a!=0) {
 				soma+=a;
 				cont++;
 			}
 		}while(a!=0);
 		
-		System.out.printf("O valor da media dos numeros multiplos de 3 é: %d",(1.0*soma/cont));
+		if(cont!=0) {
+			System.out.printf("O valor da media dos numeros multiplos de 3 é: %.2f",(soma*1d/cont));
+		}else {
+			System.out.println("não teve nenhum numero multiplo de 3");
+		}
+		
 	}
 }

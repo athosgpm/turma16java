@@ -11,6 +11,8 @@ public class Q00SomaCrescente {
 		System.out.println("insira o numero: ");  	
 		numero = ler.nextInt();
 		
+		//Limitação: só pode usar o laço do...while
+		
 		//solução while (decrescente)
 /*		while (numero>0){
 			soma+=numero;			
@@ -22,7 +24,7 @@ public class Q00SomaCrescente {
 			numero++;
 		}
 */		
-		//solução do...while (imprimindo soma)
+		//solução do...while (crescente - imprimindo soma)
 		if(numero>0) {
 			do {
 				cont++;
