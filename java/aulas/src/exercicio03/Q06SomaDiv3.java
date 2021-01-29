@@ -10,7 +10,7 @@ public class Q06SomaDiv3 {
 		do {
 			System.out.println("Digite o valor do numero: ");
 			a=ler.nextInt();
-			if(a%3==0&&a!=0) {
+			if(a%3==0 && a!=0) {
 				soma+=a;
 				cont++;
 			}
