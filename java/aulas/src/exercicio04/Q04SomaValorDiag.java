@@ -24,7 +24,7 @@ public class Q04SomaValorDiag {
 		               	}
 					}
 				}
-				System.out.printf("\nA soma de todos os valores da matriz é: %.2f",somaTotal);
+			System.out.printf("\nA soma de todos os valores da matriz é: %.2f",somaTotal);
 			System.out.printf("\nA soma de todos os valores da diagonal principal da matriz é: %.2f",somaDiagonal);
 	}
 

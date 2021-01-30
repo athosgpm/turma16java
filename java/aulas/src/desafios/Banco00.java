@@ -2,11 +2,17 @@ package desafios;
 
 import java.util.Scanner;
 
-public class Banco01 {
+public class Banco00 {
 
+	static boolean key = true;
+	static String tipo = "";
+	static int mes = 0, BDPoupanca=0;
+	static double valorBDPoupanca[] = new double[404];		//COMO FAZER UM VETOR COM TAMANHO INDEFINIDO???
+	static double saldoBDPoupanca[] = new double[404];		//COMO FAZER UM VETOR COM TAMANHO INDEFINIDO???
+	static String descricaoBDPoupanca[] = new String[404];	//COMO FAZER UM VETOR COM TAMANHO INDEFINIDO???
+	
 	public static void main(String[] args) {
 		int conta=0;
-		String tipo = "";
 		double saldoAtualPoupanca = 0.0;
 		
 		do {
@@ -42,7 +48,7 @@ public class Banco01 {
 		int conta = 1;
 
 		
-			System.out.println("### BANCO BYTE GENERATION ###\n --  Um banco para todos  -- \n");
+			System.out.println("\n### BANCO BYTE GENERATION ###\n --  Um banco para todos  -- \n");
 			System.out.println("1 - CONTA POUPANÇA\r\n" 
 							+ "2 - CONTA CORRENTE\r\n" 
 							+ "3 - CONTA ESPECIAL \r\n"
@@ -59,158 +65,190 @@ public class Banco01 {
 
 		return conta;
 	}
-	
+
 ////////////////////
 //CONTA POUPANÇA////
 ////////////////////
-
+	
 	public static double poupanca(double saldoAtualPoupanca) {
 	
-	Scanner ler = new Scanner(System.in);
+	Scanner ler = new Scanner(System.in);;
 	
-	int opcao, key = 0, key2 = 0, mes = 0;
-	double valorTransferencia;
-	String descricao = "", movimento = "";
+	int opcao;
 	
-	while (key2 == 0) {
-	
-	System.out.printf("\n-------------------------------------------\n" 
-					+ "Seja bem-vinto a sua conta Poupança!"
-					+ "\n------------------------------------------\n" 
-					+ "Saldo anterior\t- mês: %d -\t  %.2f\n"
-					+ "Juros: \t\t\t\t+ %.2f\n" 
-					+ "Saldo atual\t- mês: %d -\t  %.2f\n"
-					+ "\n------------------------------------------\n"
-					+ "você deseja fazer uma transferencia:\n" 
-					+ "1  - Sim\n" 
-					+ "2  - Não\n"
-					+ "3* - correção monetária (+1 Mês)\n",
-					mes, saldoAtualPoupanca, (saldoAtualPoupanca * 0.0005), (mes + 1), (saldoAtualPoupanca * 1.0005));
-	opcao = ler.nextInt();
-	
-	while (opcao < 1 || opcao > 3) {
-		System.out.println("\nPor favor, escolha uma das opções disponiveis.\n");
+	do {
+		System.out.printf("\n-------------------------------------------\n" 
+						+ "Seja bem-vinto a sua conta Poupança!"
+						+ "\n------------------------------------------\n" 
+						+ "Saldo anterior\t- mês: %d -\t  %.2f\n"
+						+ "Juros: \t\t\t\t+ %.2f\n" 
+						+ "Saldo atual\t- mês: %d -\t  %.2f\n"
+						+ "\n------------------------------------------\n"
+						+ "você deseja fazer uma transferencia:\n" 
+						+ "1  - Sim\n" 
+						+ "2  - Não\n"
+						+ "3  - Ver extrato de movimentações\n"
+						+ "4* - correção monetária (+1 Mês)\n",
+						mes, saldoAtualPoupanca, (saldoAtualPoupanca * 0.0005), (mes + 1), (saldoAtualPoupanca * 1.0005));
 		opcao = ler.nextInt();
-	}
+		
+		while (opcao < 1 || opcao > 4) {
+			System.out.println("\nPor favor, escolha uma das opções disponiveis.\n");
+			opcao = ler.nextInt();
+		}
+		
+		if(opcao == 1) {
+			saldoAtualPoupanca = transacao(saldoAtualPoupanca);
+			key=true;
+		} else if (opcao == 2) {
+			return saldoAtualPoupanca;
+		} else if(opcao==3) {
+			key = false;
+			saldoAtualPoupanca = transacao(saldoAtualPoupanca);
+			key=true;
+		} else if (opcao == 4) {
+			descricaoBDPoupanca[BDPoupanca] = "Juros";
+			valorBDPoupanca[BDPoupanca] = saldoAtualPoupanca * 0.0005;
+			saldoAtualPoupanca += saldoAtualPoupanca * 0.0005;
+			saldoBDPoupanca[BDPoupanca+1] = saldoAtualPoupanca;
+			mes++;
+			BDPoupanca++;
+		}
+	}while(true);
 	
-	if (opcao == 2) {
-		return saldoAtualPoupanca;
-	}
-	if (opcao == 3) {
-		mes++;
-		saldoAtualPoupanca += saldoAtualPoupanca * 0.0005;
-		key2 = 1;
-	}
-	
-	if (key2 != 1) {
-	
-		do {
-			System.out.print("\n-----------------------\n" 
-							+ "Opção de transferencia!" 
-							+ "\n----------------------\n");
-			
+}
+////////////////////
+	public static double transacao(double saldoAtualConta){
+		
+		Scanner ler = new Scanner(System.in);
+		
+		int opcao;
+		String movimento = "",time = "";
+		
+		while(key==true) {
 			// opção de movimento
-	
-			System.out.println("Selecione o movimento:\n" 
+			System.out.println("\n-----------------------\n" 
+							+ "Opção de transferencia!" 
+							+ "\n----------------------\n"
+							+ "Selecione o movimento:\n" 
 							+ "1 - Debito\n" 
 							+ "2 - Credito\n"
-							+ "3 - voltar para o menu poupança");
+							+ "3 - voltar para o menu da sua conta");
 			opcao = ler.nextInt();
-	
+		
 			while (opcao < 1 || opcao > 3) {
 				System.out.print("\nPor favor, escolha uma das opções disponiveis.\n");
 				opcao = ler.nextInt();
 			}
-			if(opcao==1 && saldoAtualPoupanca==0) {
-				key2=1;
+			
+			if(opcao==1 && saldoAtualConta==0) {
 				System.out.println("Você esta sem saldo no momento!");
+				try {
+					   Thread.sleep(2000);
+					} catch (Exception e) {
+					   e.printStackTrace();
+					}
+				return saldoAtualConta;
 			}
 			if(opcao==3) {
-				key2=1;
+				return saldoAtualConta;
 			}
-			if(key2!=1) {
 			if (opcao == 1) {
 				movimento = "DEBITO";
 			} else {
 				movimento = "CREDITO";
 			}
-	
-			// Valor de transferencia
-	
-			do {
-				System.out.println("\nDigite o valor a ser transferido: ");
-				valorTransferencia = ler.nextDouble();
-				
-				while(valorTransferencia<=0) {
-					System.out.print("\nPor favor, insira um valor positivo.\n");
-					valorTransferencia = ler.nextDouble();
-				}
-	
-				if (opcao == 1) {
-					if (saldoAtualPoupanca < valorTransferencia) {
-						System.out.print("Saldo indisponivel para essa transação\n"
-										+ "Você deseja fazer a transferencia de debito de um outro valor:\n" 
-										+ "1-Sim\n"
-										+ "2-Não\n");
-						opcao = ler.nextInt();
-	
-						while (opcao < 1 || opcao > 2) {
-							System.out.print("\nPor favor, escolha uma das opções disponiveis.\n");
-							opcao = ler.nextInt();
-						}
-						if (opcao == 1) {
-							key = 0;
-						} else {
-							key2 = 1;
-							key=1;
-						}
-					} else {
-						saldoAtualPoupanca -= valorTransferencia;
-						key = 1;
-					}
-				} else {
-					saldoAtualPoupanca += valorTransferencia;
-					key = 1;
-				}
-			} while (key != 1);
 			
-			if (key2 != 1) {
-				System.out.println("\nEscreva a descrição da transferência: ");
-				descricao = ler.next();
+			// Valor de transferencia
+			
+			System.out.println("\nDigite o valor a ser transferido: ");
+			valorBDPoupanca[BDPoupanca] = ler.nextDouble();
+			
+			while(valorBDPoupanca[BDPoupanca]<=0) {
+				System.out.print("\nPor favor, insira um valor positivo.\n");
+				valorBDPoupanca[BDPoupanca] = ler.nextDouble();
+			}
 	
-				System.out.printf("\n--------------------------------\n" 
-								+ "Transação realisada com sucesso!"
-								+ "\n-------------------------------\n" 
-								+ "CONTA POUPANÇA\n"
-								+ "MOVIMENTO RESALIZADO: %s\n" 
-								+ "VALOR: %.2f\n" 
-								+ "DESCRIÇÃO: %s\n"
-								+ "SALDO ATUAL: %.2f\n\n" 
-								+ "Continua:\n" 
-								+ "1 - Sim\n" 
-								+ "2 - Não\n",
-								movimento, valorTransferencia, descricao, saldoAtualPoupanca);
-				opcao = ler.nextInt();
-	
-				while (opcao < 1 || opcao > 2) {
-					System.out.println("Por favor, escolha uma das opções disponiveis.\n");
-					opcao = ler.nextInt();
+			if (opcao == 1) {
+				if (saldoAtualConta < valorBDPoupanca[BDPoupanca]) {
+					System.out.print("Saldo indisponivel para essa transação\n");
+					try {
+						   Thread.sleep(3000);
+						} catch (Exception e) {
+						   e.printStackTrace();
+						}
+					return saldoAtualConta;
+				} else {
+					saldoAtualConta -= valorBDPoupanca[BDPoupanca];
 				}
-				
+			} else {
+				saldoAtualConta += valorBDPoupanca[BDPoupanca];
 			}
+			
+			System.out.println("\nEscreva a descrição da transferência: ");
+			descricaoBDPoupanca[BDPoupanca] = ler.next();
+	
+			System.out.printf("\n--------------------------------\n" 
+							+ "Transação realisada com sucesso!"
+							+ "\n-------------------------------\n" 
+							+ "%s\n"
+							+ "MOVIMENTO RESALIZADO: %s\n" 
+							+ "VALOR: %.2f\n" 
+							+ "DESCRIÇÃO: %s\n"
+							+ "SALDO ATUAL: %.2f\n\n" 
+							+ "Deseja fazer uma nova transferência:\n" 
+							+ "1 - Sim\n" 
+							+ "2 - Não\n",
+							tipo,movimento, valorBDPoupanca[BDPoupanca], descricaoBDPoupanca[BDPoupanca], saldoAtualConta);
+			opcao = ler.nextInt();
+			
+			saldoBDPoupanca[BDPoupanca+1]=saldoAtualConta;
+			BDPoupanca++;
+			
+			while (opcao < 1 || opcao > 2) {
+				System.out.println("Por favor, escolha uma das opções disponiveis.\n");
+				opcao = ler.nextInt();
+			}		
+			if(opcao==2) {
+				key = false;
 			}
-			if (key2 == 1) {
-				opcao = 0;			
+		};
+		
+		System.out.println("Voce deseja ver o extrato de movimentações:\n"
+						+ "1 - Sim\n" 
+						+ "2 - Não\n");
+		opcao = ler.nextInt();
+
+		while (opcao < 1 || opcao > 2) {
+			System.out.print("\nPor favor, escolha uma das opções disponiveis.\n");
+			opcao = ler.nextInt();
+		}
+		if(opcao==1) {
+			//exibir extratos de movimentações
+			System.out.println("#EXTRATOS#");
+			if (BDPoupanca==0) {
+				System.out.println("Você ainda não tem extratos de movimentações!\n");
+				try {
+					   Thread.sleep(5000);
+					} catch (Exception e) {
+					   e.printStackTrace();
+					}
 			}
-		} while (opcao == 1);		
+			for (int i=0;i<BDPoupanca;i++) {
+				System.out.printf("\n--------------------------------\n"
+								+ "%dª Movimentação Realizada"
+								+ "\n--------------------------------\n"
+								+ "Valor da transferencia:  %.2f\n"
+								+ "Descricao:               %s\n"
+								+ "Saldo resultante:        %.2f\n"
+								+ "\n________________________________\n",
+								(i+1),valorBDPoupanca[i],descricaoBDPoupanca[i],saldoBDPoupanca[i+1]);
+				System.out.println("\nPara voltar para o menu da sua conta insira algum caracter e aperte enter!");
+				time=ler.next();
+			}
+		}
+		return saldoAtualConta;
 	}
-	key2 = 0;
-	if(opcao==2) {
-		key2=1;
-	}
-	}
-	return saldoAtualPoupanca;
-}
 
 ////////////////////
 //CONTA CORRENTE////
@@ -456,7 +494,7 @@ public class Banco01 {
 //CONTA ESTUDANTIL//
 ////////////////////	
 	
-public static void contaEstudantil() {
+	public static void contaEstudantil() {
 
 		Scanner leia = new Scanner (System.in); 
 		double saldo=0, valor=0,valorLimite=0, valorLimite1=5000;

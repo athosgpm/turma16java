@@ -1,10 +1,12 @@
 package exercicio04;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Q03ASomaMatriz {
 	public static void main(String[] args) {
 		Scanner ler = new Scanner(System.in);
+		Random num = new Random();
 		double N1[][]=new double[4][6];
 		double N2[][]=new double[4][6];
 		double M1[][]=new double[4][6];
@@ -15,16 +17,14 @@ public class Q03ASomaMatriz {
 					{
 						for(int c=0;c<6;c++)
 						{
-							System.out.printf("insira o valor da matriz N%d, Linha %d Coluna %d: ",(m+1),l,c);
-							
 							if(m==0)
 							{
-								N1[l][c]=ler.nextDouble();
+								N1[l][c]=num.nextInt(10);
 							}
 							
 							if(m==1)
 							{
-								N2[l][c]=ler.nextDouble();
+								N2[l][c]=num.nextInt(10);
 							}
 							
 							M1[l][c] = N1[l][c]	+ N2[l][c];				
@@ -37,7 +37,7 @@ public class Q03ASomaMatriz {
 					System.out.println();
 					for(int c=0;c<6;c++)
 					{	
-					System.out.printf(" | %.2f |",M1[l][c]);
+					System.out.printf(" | %.2f |",N1[l][c]);
 					}
 				}
 	}
