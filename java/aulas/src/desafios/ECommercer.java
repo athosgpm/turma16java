@@ -433,10 +433,10 @@ public class ECommercer {
 //####		
 		System.out.println("\nEscolha a forma de pagamento"
 						+ "\n0. DESISTIR DA COMPRA"
-						+ "\n1. A VISTA - 10% DESCONTO: "+ formatar.format(totalGeral*0.10)
+						+ "\n1. A VISTA - 10% DESCONTO: "+ formatar.format(totalGeral*0.10)+" Total: "+formatar.format(totalGeral*0.90)
 						+ "\n2. CARTÃO - 1 VEZ: - SEM DESCONTO"+ formatar.format(totalGeral)
-						+ "\n3. CARTÃO - 2 VEZES  JUROS(10%) - PARCELAS DE: "+ formatar.format(totalGeral*1.1/2)
-						+ "\n4. CARTÃO - 3 VEZES JUROS (15%) - PARCELAS DE: "+ formatar.format(totalGeral*1.15/3)
+						+ "\n3. CARTÃO - 2 VEZES  JUROS(10%) - PARCELAS DE: "+ formatar.format(totalGeral*1.1/2)+" Total: "+formatar.format(totalGeral*1.1)
+						+ "\n4. CARTÃO - 3 VEZES JUROS (15%) - PARCELAS DE: "+ formatar.format(totalGeral*1.15/3)+" Total: "+formatar.format(totalGeral*1.15)
 						+ "\nInsira Aqui: ");
 		opcao = ler.nextInt();
 		
