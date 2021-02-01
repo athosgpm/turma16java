@@ -497,7 +497,7 @@ public class ECommercer {
 			{
 				if(carrinhoA[i] != 0)
 				{
-					System.out.println(carrinhoA[i] + "\t\t" + (precoA[i]*carrinhoA[i]) + "\t" + produtoA[i] + "\n");
+					System.out.print(carrinhoA[i] + "\t\t" + (precoA[i]*carrinhoA[i]) + "\t" + produtoA[i] + "\n");
 				}
 			}
 			
