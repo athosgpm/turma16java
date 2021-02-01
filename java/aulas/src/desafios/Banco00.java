@@ -245,9 +245,9 @@ public class Banco00 {
 								+ "Saldo resultante:        %.2f\n"
 								+ "\n________________________________\n",
 								(i+1),valorBDPoupanca[i],descricaoBDPoupanca[i],saldoBDPoupanca[i+1]);
-				System.out.println("\nPara voltar para o menu da sua conta insira algum caracter e aperte enter!");
-				time=ler.next();
 			}
+			System.out.println("\nPara voltar para o menu da sua conta insira algum caracter e aperte enter!");
+			time=ler.next();
 		}
 		return saldoAtualConta;
 	}
