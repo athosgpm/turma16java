@@ -36,11 +36,11 @@ public class ECommercer {
 				case 1:
 				cadastro();
 				break;
-	
+				
 				case 2:
 				produtos();
 				break;
-	
+				
 				case 3:
 				carrinho();
 				break;
@@ -52,6 +52,7 @@ public class ECommercer {
 						gamb++;
 					}
 				}
+				
 				if(gamb==nItens) {
 					for(int i=0;i<nItens;i++)
 					{
@@ -60,6 +61,7 @@ public class ECommercer {
 						totalGeral = 0.0;
 					}
 				}
+				
 				break;
 	
 				default:
@@ -97,7 +99,7 @@ public class ECommercer {
 			estok="4. Renovar estoque";
 		}
 		System.out.println("\n==================================================\n");
-		System.out.print("\nCafee-Commercer Generation\nTornando o mundo melhor!\n\n"+"Olá"+ tratamento1+ nome1+virgula+
+		System.out.print("\nCafee-Commercer Generation\nTornando o mundo melhor com café!\n\n"+"Olá "+ tratamento1+ nome1+virgula+
 				" por favor, escolha umas das opções a seguir"+"\ndigitando o numero correspondente a opção desejada:");
 		System.out.print(	"\n__  _"+
 							"\n___  |________________\t\t1. Cadastro/login"+
@@ -147,7 +149,7 @@ public class ECommercer {
 			}
 		System.out.println("\ncadastro concluido!");
 		try {
-			   Thread.sleep(2000);
+			   Thread.sleep(1000);
 			} catch (Exception e) {
 			   e.printStackTrace();
 			}
@@ -199,7 +201,7 @@ public class ECommercer {
 				} catch (Exception e) {
 				   e.printStackTrace();
 				}
-			return;	
+			main(null);	
 		}
 		else if (IDProduto>nItens || IDProduto<0)
 		{
@@ -228,7 +230,7 @@ public class ECommercer {
 			System.out.print("\nInfelizmente só temos "+estoqueA[IDProduto-1]+" unidades de "+produtoA[IDProduto-1]+" em estoque."+
 			"\nEscolha outro produto ou selecione uma quantidade menor para este produto");
 			try {
-				   Thread.sleep(8000);
+				   Thread.sleep(5000);
 				} catch (Exception e) {
 				   e.printStackTrace();
 				}
@@ -323,7 +325,7 @@ public class ECommercer {
 		System.out.println("-----------------------------------------");
 //####		
 		System.out.println("\nEscolha uma das opções a seguir: "
-				+ "\n1. Continuar comparando"
+				+ "\n1. Continuar comprando"
 				+ "\n2. Adicionar/Subtrair Itens do carrinho"
 				+ "\n3. Desistir da compra"
 				+ "\n4. Efetuar compra!");
@@ -373,7 +375,7 @@ public class ECommercer {
 							System.out.print("\nInfelizmente só temos "+estoqueA[IDProduto-1]+" unidades de "+produtoA[IDProduto-1]+" em estoque."+
 							"\nEscolha outro produto ou selecione uma quantidade menor para este produto");
 							try {
-								   Thread.sleep(8000);
+								   Thread.sleep(4000);
 								} catch (Exception e) {
 								   e.printStackTrace();
 								}
@@ -396,11 +398,11 @@ public class ECommercer {
 						System.out.printf("\nInsira quantas unidades do produto (%s) você deseja: ",produtoA[IDProduto-1]);
 						qtd=ler.nextInt();
 					
-						if (qtd > estoqueA[IDProduto-1]){
-							System.out.print("\nInfelizmente só temos "+estoqueA[IDProduto-1]+" unidades de "+produtoA[IDProduto-1]+" em estoque."+
+						if (qtd > carrinhoA[IDProduto-1]){
+							System.out.print("\nInfelizmente só tem "+carrinhoA[IDProduto-1]+" unidades de "+produtoA[IDProduto-1]+" no carrinho."+
 							"\nEscolha outro produto ou selecione uma quantidade menor para este produto");
 							try {
-								   Thread.sleep(8000);
+								   Thread.sleep(4000);
 								} catch (Exception e) {
 								   e.printStackTrace();
 								}
@@ -434,7 +436,7 @@ public class ECommercer {
 		System.out.println("\nEscolha a forma de pagamento"
 						+ "\n0. DESISTIR DA COMPRA"
 						+ "\n1. A VISTA - 10% DESCONTO: "+ formatar.format(totalGeral*0.10)+" Total: "+formatar.format(totalGeral*0.90)
-						+ "\n2. CARTÃO - 1 VEZ: - SEM DESCONTO"+ formatar.format(totalGeral)
+						+ "\n2. CARTÃO - 1 VEZ: - SEM DESCONTO total: "+ formatar.format(totalGeral)
 						+ "\n3. CARTÃO - 2 VEZES  JUROS(10%) - PARCELAS DE: "+ formatar.format(totalGeral*1.1/2)+" Total: "+formatar.format(totalGeral*1.1)
 						+ "\n4. CARTÃO - 3 VEZES JUROS (15%) - PARCELAS DE: "+ formatar.format(totalGeral*1.15/3)+" Total: "+formatar.format(totalGeral*1.15)
 						+ "\nInsira Aqui: ");
