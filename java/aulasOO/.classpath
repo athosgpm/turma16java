@@ -8,5 +8,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="lista05"/>
 	<classpathentry kind="src" path="lista06"/>
+	<classpathentry kind="src" path="lista07"/>
+	<classpathentry kind="src" path="ecommercer"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
