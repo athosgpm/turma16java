@@ -9,7 +9,7 @@ public class TestaEstoque {
 
 	public static Scanner ler = new Scanner(System.in);
 	public static Collection<Estoque> stock = new ArrayList<>();
-	Estoque produto = new Estoque();
+	//Estoque produto = new Estoque();
 	
 	public static void main(String[] args) {
 		

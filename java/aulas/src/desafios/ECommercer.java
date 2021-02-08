@@ -480,7 +480,7 @@ public class ECommercer {
 		
 		System.out.println("Você deseja efetuar a compra na opção " + formaPagamento + " no valor de " + totalPagar +"? (S/N)");
 		efetuarCompra = ler.next().charAt(0);
-				
+//NOTA FISCAL!				
 		if((efetuarCompra == 'S') || (efetuarCompra == 's'))
 		{
 			System.out.println("Compra efetuada com sucesso!");

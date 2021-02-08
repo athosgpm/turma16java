@@ -19,17 +19,13 @@ public class Q00Pessoas
 	}
 	
 	public String statusTratamento() {
-		String mensagem;
-		if (sexo=='M') 
-		{
-			mensagem = "Sr.";
-		} else if(sexo=='F')
-		{
-			mensagem = "Sra.";
+		if (sexo=='M') {
+			return "Sr.";
+		} else if(sexo=='F') {
+			return "Sra.";
 		}else {
-			mensagem = "Sre.";
+			return "Sre.";
 		}
-		return mensagem;
 	}
 	
 	public String statusIdade()

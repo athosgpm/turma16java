@@ -1,0 +1,10 @@
+01;Cafe Expresso;0.5;10
+02;Cafe Com Leite;1.0;10
+03;Cappuccino;1.5;10
+04;Mocha;2.0;10
+05;Pingado;2.5;10
+06;Latte;3.0;10
+07;Breve;3.5;10
+08;Macchiato;4.0;10
+09;Cafe Com Panna;4.5;10
+10;Americano;5.0;10
