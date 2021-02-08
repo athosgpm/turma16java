@@ -21,7 +21,6 @@ import entidadesEcommerce.Pagamento;
 import entidadesEcommerce.Produto;
 
 public class Codigo {
-
 	static DecimalFormat formatar = new DecimalFormat("0.00");
 	
 	public static Map<String, Produto> produtos = new HashMap<String, Produto>();
@@ -94,7 +93,6 @@ public class Codigo {
 		sexo = ler.next().toUpperCase().charAt(0);		
 		clientes.setGenero(sexo);
 		clientes.setNome(nome);
-		
 		System.out.println("\nCadastro concluido!");
 		delay(1000);
 	}	
@@ -118,13 +116,11 @@ public class Codigo {
 			delay(1000);
 			main(null);
 		}else {
-			adicionarCarrinho(idProd);
+			adicionarCarrinhop(idProd);
 		}
-		
 		System.out.print("\nO produto foi adicionado ao seu carrinho!"+
 		"\nVocê deseja continuar comprando?\n1. Sim\n2. Não\n\nInsira aqui: ");
 		op=ler.nextInt();
-		
 		while (op!=1 && op!=2){
 			System.out.print("Por favor, insira uma das opções disponiveis");
 			op=ler.nextInt();
@@ -150,7 +146,6 @@ public class Codigo {
 			main(null);
 		}
 		listaCarrinho();
-		
 		System.out.println("-----------------------------------------");
 		System.out.print("Total Geral: "+formatar.format(carrinho.valorSubtotal())+" - IMPOSTO (9%): "+formatar.format(p1.calcularImposto())+"\n");
 		System.out.println("-----------------------------------------");		
@@ -164,20 +159,19 @@ public class Codigo {
 			System.out.println("Por favor, escolha uma das opções disponiveis!");
 			op=ler.nextInt();
 		}
-		
 		if(op==1){
 			produto();
 		}else if(op==2) {
 			System.out.println("Você deseja\n1 - Adicionar\n2 - Subtrair");
 			int opcao = ler.nextInt();
-			while(opcao!=1||opcao!=2) {
+			while(opcao!=1&&opcao!=2) {
 				System.out.println("Por favor, insira uma das opções disponiveis:");
 				opcao = ler.nextInt();
 			}
 			System.out.println("Digite o código do produto: ");
 			String id = ler.next();
 			if(opcao==1) {
-				adicionarCarrinho(id);
+				adicionarCarrinhoc(id);
 			}else {
 				removerCarrinho(id);
 			}
@@ -186,7 +180,6 @@ public class Codigo {
 			cacelarCompra();
 			main(null);
 		}
-				
 		System.out.println("\nEscolha a forma de pagamento"
 				+ "\n0. DESISTIR DA COMPRA"
 				+ "\n1. A VISTA - 10% DESCONTO: "+formatar.format(p1.valorTotalGeral(0.10))+" Total: "+formatar.format(p1.valorTotalGeral(0.90))
@@ -195,7 +188,6 @@ public class Codigo {
 				+ "\n4. CARTÃO - 3 VEZES JUROS (15%) - PARCELAS DE: "+ formatar.format(p1.valorTotalGeral(1.15)/3) +" Total: "+formatar.format(p1.valorTotalGeral(1.15))
 				+ "\nInsira Aqui: ");
 		op = ler.nextInt();
-		
 		if(op==0) {
 			cacelarCompra();
 			return;
@@ -215,14 +207,12 @@ public class Codigo {
 			System.out.println("caracter invalido!\n Tente novamente");
 			carrinhoFunc();
 		}
-		
 		System.out.println("Você deseja efetuar a compra na opção " + formaPagamento + " no valor de " + formatar.format(p1.getTotalGeral()) +"? (S/N)");
 		char efetuarCompra = ler.next().toUpperCase().charAt(0);
 //NOTA FISCAL				
 		if(efetuarCompra == 'S') {
 			System.out.println("Compra efetuada com sucesso!");
 			delay(1000);
-			
 			System.out.print("\nCAFEE-COMMERCEER\n");
 			System.out.print("----------------------------------\n");
 			listaCarrinho();
@@ -231,27 +221,22 @@ public class Codigo {
 			System.out.println("OPÇÃO DE PAGAMENTO: " + formaPagamento);
 			System.out.println("TOTAL A SER PAGO: " + formatar.format(p1.getTotalGeral()));
 			System.out.println("VOLTE SEMPRE! :) ");
-			
 			delay(5000);
 			clientes.setNome("");
 			clientes.setGenero('░');
-			
 			carrinho.getMapItemCarrinho().clear();											
 		}
-		else if(efetuarCompra =='N')
-		{
+		else if(efetuarCompra =='N') {
 			main(null);
 		}
-		else
-		{
+		else {
 			System.out.println("Caracter invalida \nTente novamente");
 			carrinhoFunc();
 		}
 	}
 //////////////////////////////////////////////////		ADICIONAR/REMOVER
-	public static void adicionarCarrinho(String id) {
-		
-		if (produtos.containsKey(id)) {
+	public static void adicionarCarrinhop(String id) {
+		if (produtos.containsKey(id) && produtos.get(id).getQtdProduto()!=0) {
 			System.out.println("Digite a quantidade que deseja adicionar: ");
 			int qtd = ler.nextInt();
 			while(qtd<=0) {
@@ -260,7 +245,6 @@ public class Codigo {
 			}
 			if(qtd <= produtos.get(id).getQtdProduto()) {
 				produtos.get(id).setQtdProduto(produtos.get(id).getQtdProduto() - qtd);
-				
 				if(carrinho.getMapItemCarrinho().containsKey(id)) {
 					carrinho.getMapItemCarrinho().get(id).setqtdCarrinho(carrinho.getMapItemCarrinho().get(id).getqtdCarrinho()+qtd);
 				}else {
@@ -270,16 +254,43 @@ public class Codigo {
 			}else {
 				System.out.println("A quantidade inserida é invalida!");
 				delay(1500);
-				main(null);
+				produto();
+			}
+		}else {
+			System.out.println("O Id inserido não esta disponivel!");
+			delay(1500);
+			produto();
+		}
+	}
+	
+	public static void adicionarCarrinhoc(String id) {
+		if (carrinho.getMapItemCarrinho().containsKey(id)) {
+			System.out.println("Digite a quantidade que deseja adicionar: ");
+			int qtd = ler.nextInt();
+			while(qtd<=0) {
+				System.out.println("Por favor, digite um valor positivo maior que zero");
+				qtd = ler.nextInt();
+			}
+			if(qtd <= produtos.get(id).getQtdProduto()) {
+				produtos.get(id).setQtdProduto(produtos.get(id).getQtdProduto() - qtd);
+				if(carrinho.getMapItemCarrinho().containsKey(id)) {
+					carrinho.getMapItemCarrinho().get(id).setqtdCarrinho(carrinho.getMapItemCarrinho().get(id).getqtdCarrinho()+qtd);
+				}else {
+					ItemCarrinho itemCarrinho = new ItemCarrinho(produtos.get(id), qtd);
+					carrinho.addItemCarrinho(itemCarrinho);
+				}
+			}else {
+				System.out.println("A quantidade inserida é invalida!");
+				delay(1500);
+				carrinhoFunc();
 			}
 		}else {
 			System.out.println("O Id inserido não é valido!");
 			delay(1500);
-			main(null);
+			carrinhoFunc();
 		}
-		
 	}
-	
+
 	public static void removerCarrinho(String id) {
 		if(carrinho.getMapItemCarrinho().containsKey(id)) {
 			System.out.println("Digite a quantidade que deseja subtrair: ");
@@ -300,7 +311,7 @@ public class Codigo {
 			}else {
 				System.out.println("A quantidade inserida é invalida!");
 				delay(1500);
-				main(null);
+				carrinhoFunc();
 			}
 			if(carrinho.getMapItemCarrinho().get(id).getqtdCarrinho()==0) {
 				carrinho.getMapItemCarrinho().remove(id);
@@ -308,7 +319,7 @@ public class Codigo {
 		}else {
 			System.out.println("O Id inserido não é valido!");
 			delay(1500);
-			main(null);
+			carrinhoFunc();
 		}
 	}
 //////////////////////////////////////////////////		CANCELAR COMPRA	
@@ -338,12 +349,10 @@ public class Codigo {
 			leitura = new FileInputStream("produtos.txt");
 			InputStreamReader conteudo = new InputStreamReader(leitura);
 			conversao = new BufferedReader(conteudo);
-
 			while (conversao.ready()) {
 				String linha = conversao.readLine();
 				String item[] = linha.split(";");					
 				Produto prod = new Produto(item[0], item[1],(Integer.parseInt(item[3])), Double.parseDouble(item[2]));
-				
 				produtos.put(item[0], prod);
 			}
 		} catch (Exception e) {
@@ -383,6 +392,6 @@ public class Codigo {
 		try { Thread.sleep(time);
 		} catch (Exception e) {
 		e.printStackTrace();
+		}
 	}
-}
 }
